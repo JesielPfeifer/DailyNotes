@@ -15,4 +15,4 @@ connectToDatabase();
 app.use(cors());
 app.use(express.json()); // é um middler que processa os objetos em json,
 app.use(routes);
-app.listen(port, () => console.log(`Rodando com express na porta ${port}`));
+app.listen(port, () => console.log(`Running express on port ${port}`));

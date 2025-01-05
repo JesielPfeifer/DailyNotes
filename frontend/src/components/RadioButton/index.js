@@ -3,8 +3,8 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import { styled } from "@mui/material/styles";
+import './styles.css'
 
 const CustomRadio = styled(Radio)({
   color: "#FFD3CA",
@@ -17,13 +17,13 @@ function RadioButton() {
   return (
     <FormControl>
       <RadioGroup
-        row
+        className="radioOptions"
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
       >
-        <FormControlLabel value="female" control={<CustomRadio />} label="Female" />
-        <FormControlLabel value="male" control={<CustomRadio />} label="Male" />
-        <FormControlLabel value="other" control={<CustomRadio />} label="Other" />
+        <FormControlLabel value="todos" control={<CustomRadio />} label="Todos" />
+        <FormControlLabel value="normal" control={<CustomRadio />} label="Normal" />
+        <FormControlLabel value="prioridade" control={<CustomRadio />} label="Prioridade" />
       </RadioGroup>
     </FormControl>
   );

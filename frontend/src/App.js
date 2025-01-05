@@ -66,6 +66,7 @@ function App() {
             <label htmlFor="title">Titulo da anotação</label>
             <input 
               required
+              maxLength="30"
               value={title}
               onChange={event => setTitles(event.target.value)}
             />
@@ -86,7 +87,7 @@ function App() {
       <main>
         <ul>
           {allNotes.map(data => (
-            <Notes data={data} />
+            <Notes key={data._id} data={data} />
             ))}
         </ul>
       </main>

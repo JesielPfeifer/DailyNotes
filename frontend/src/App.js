@@ -21,14 +21,53 @@ function App() {
   const [title, setTitles] = useState('')
   const [notes, setNotes] = useState('')
   const [allNotes, setAllNotes] = useState([])
+  const [selectedValue, setSelectedValue] =  useState('all');
 
   useEffect(()=>{
-    async function getAllNotes(){
-      const response = await api.get('/annotations',)
-      setAllNotes(response.data)
-    }
     getAllNotes()
   }, [])
+  
+  async function loadNotes(option) {
+    const params = { priority: option };
+    const response = await api.get("/priorities", { params });
+
+    if (response) {
+      setAllNotes(response.data)
+    }
+  }
+
+  function handleChange(event){
+    setSelectedValue(event.value);
+
+    if (event.checked && event.value !== 'all'){
+      loadNotes(event.value);
+    } else {
+      getAllNotes();
+    }
+  }
+
+  async function getAllNotes(){
+    const response = await api.get('/annotations',)
+    setAllNotes(response.data)
+  }
+  
+  async function handleDelete (id) {
+    const deletedNote = await api.delete(`/annotations/${id}`);
+      if (deletedNote) {
+        setAllNotes(allNotes.filter(note => note._id !== id))
+      }
+  }
+
+  async function handleChangePriority(id) {
+    const notePriority = await api.post(`/priorities/${id}`);
+
+    if (notePriority && selectedValue !== 'all') {
+      loadNotes(selectedValue)
+    } else if (notePriority) {
+      getAllNotes();
+    }
+    
+  }
 
   async function handleSubmit(event){
     event.preventDefault()
@@ -42,8 +81,12 @@ function App() {
     setTitles('')
     setNotes('')
 
-    setAllNotes([...allNotes, response.data])
-
+    if (selectedValue !== 'all') {
+      getAllNotes();
+    } else {
+      setAllNotes([...allNotes, response.data])
+    }
+    setSelectedValue('all');
   }
 
   useEffect(() =>{
@@ -82,12 +125,20 @@ function App() {
 
             <button id="btn_submit" type="submit">Salvar</button>
         </form>
-        <RadioButton/>
+        <RadioButton
+          selectedValue={selectedValue}
+          handleChange={handleChange}
+        />
       </aside>
       <main>
         <ul>
           {allNotes.map(data => (
-            <Notes key={data._id} data={data} />
+            <Notes 
+              key={data._id} 
+              data={data} 
+              handleDelete={handleDelete}
+              handleChangePriority={handleChangePriority}
+            />
             ))}
         </ul>
       </main>

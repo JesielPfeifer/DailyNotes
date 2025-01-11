@@ -13,17 +13,20 @@ const CustomRadio = styled(Radio)({
   },
 });
 
-function RadioButton() {
+function RadioButton( {selectedValue, handleChange} ) {
+  
   return (
     <FormControl>
       <RadioGroup
+        onChange={event => handleChange(event.target)}
+        value={selectedValue}
         className="radioOptions"
         aria-labelledby="demo-row-radio-buttons-group-label"
         name="row-radio-buttons-group"
       >
-        <FormControlLabel value="todos" control={<CustomRadio />} label="Todos" />
-        <FormControlLabel value="normal" control={<CustomRadio />} label="Normal" />
-        <FormControlLabel value="prioridade" control={<CustomRadio />} label="Prioridade" />
+        <FormControlLabel value="all" control={<CustomRadio />} label="Todos" />
+        <FormControlLabel value="false" control={<CustomRadio />} label="Normal" />
+        <FormControlLabel value="true" control={<CustomRadio />} label="Prioridade" />
       </RadioGroup>
     </FormControl>
   );

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose"); // importa o mongose
+const mongoose = require('mongoose'); // importa o mongose
 
 //abaixo cria o schema para o mongoDb
 const UserDataSchema = new mongoose.Schema({
@@ -8,4 +8,4 @@ const UserDataSchema = new mongoose.Schema({
 });
 
 //exporta o schema criado acima
-module.exports = mongoose.model("User", UserDataSchema);
+module.exports = mongoose.model('User', UserDataSchema);

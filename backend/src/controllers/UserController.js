@@ -1,11 +1,10 @@
 const User = require("../models/UserData");
-const secret = process.env.SECRET
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 module.exports = {
-
-    async findUser(checkToken, request, response){
+    
+    async findUser(request, response){
         const id = request.params.id
         const authHeader = request.headers['authorization']
         const token = authHeader && authHeader.split(" ")[1]
@@ -25,11 +24,11 @@ module.exports = {
         if(!user){
             return response.status(404).json({msg:"User not found"})
         }
-        response.status.json({user})
+        response.status(200).json({user})
     },
 
     async login(request, response) {
-        const { email, password } = req.body;
+        const { email, password } = request.body;
         //checking if mandatory infos is valid
         if (!email) {
             return response.status(422).json({msg:'E-mail é obrigatorio'})
@@ -39,7 +38,7 @@ module.exports = {
         }
         
         //checking if user exists
-        const userExists = await Annotations.findOne({ email: email });
+        const userExists = await User.findOne({ email: email });
         if (!userExists) {
             return response.json({msg:'User not found'})
         }
@@ -51,6 +50,7 @@ module.exports = {
         }
 
         try {
+            const secret = process.env.SECRET
             const token = jwt.sign(
                 {
                     id: userExists._id,
@@ -59,7 +59,7 @@ module.exports = {
             )
             return response.status(200).json({msg:"Authentication success", token})
         } catch(err) {
-            return response.status(500).json({msg:"Internal Error"})
+            return response.status(500).json({msg:"Internal Error", err})
         }
     },
 
@@ -74,7 +74,7 @@ module.exports = {
         if(!password){
             return response.status(422).json({msg:"A senha é obrigatorio"})
         }
-        if(!password != confirmPassword){
+        if(password != confirmPassword){
             return response.status(422).json({msg:"Senhas não conferem"})
         }
 

@@ -1,5 +1,4 @@
-const { query } = require("express");
-const Annotations = require("../models/AnnotationData");
+const Annotations = require('../models/AnnotationData');
 
 module.exports = {
     async read(request, response) {

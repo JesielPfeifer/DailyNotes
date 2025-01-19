@@ -1,4 +1,4 @@
-const Annotations = require("../models/AnnotationData");
+const Annotations = require('../models/AnnotationData');
 
 module.exports = {
     async read(request, response) {
@@ -12,7 +12,7 @@ module.exports = {
         if (!notes || !title) {
             return response
                 .status(400)
-                .json({ error: "Necessario um título ou Anotação" });
+                .json({ error: 'Necessario um título ou Anotação' });
         }
         const annotationCreated = await Annotations.create({
             title,
@@ -33,6 +33,6 @@ module.exports = {
         }
         return response
             .status(401)
-            .json({ error: "Não foi encontrado o registro para delete" });
+            .json({ error: 'Não foi encontrado o registro para delete' });
     },
 };

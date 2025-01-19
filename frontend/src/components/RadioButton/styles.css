@@ -1,18 +1,18 @@
 .radioOptions {
-    color: #acacac !important;
-    font-size: 14px !important;
-    font-weight: bold !important;
-    margin-top: 25px !important;
-    display: flex !important;
-    justify-content: center !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important; /* Impede a quebra de linha */
+  color: #acacac !important;
+  font-size: 14px !important;
+  font-weight: bold !important;
+  margin-top: 25px !important;
+  display: flex !important;
+  justify-content: center !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important; /* Impede a quebra de linha */
 }
 
 .radioOptions .MuiFormControlLabel-label {
-    font-size: 14px !important; /* Define o tamanho da fonte dos rótulos */
+  font-size: 14px !important; /* Define o tamanho da fonte dos rótulos */
 }
 
 .MuiFormControlLabel-root {
-    margin: 0 !important; /* Remove margens extras */
+  margin: 0 !important; /* Remove margens extras */
 }

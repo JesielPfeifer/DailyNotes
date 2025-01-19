@@ -81,6 +81,13 @@ module.exports = {
             return response.status(422).json({ msg: 'Senhas não conferem' });
         }
 
+        const UserExists = await User.findOne({ email: email });
+        if (UserExists) {
+            return response.status(422).json({
+                msg: 'Já existe um usuário cadastrado com este e-mail',
+            });
+        }
+
         const salt = await bcrypt.genSalt(12);
         const passwordHash = await bcrypt.hash(password, salt);
 

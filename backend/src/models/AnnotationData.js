@@ -8,4 +8,4 @@ const AnnotationDataSchema = new mongoose.Schema({
 });
 
 //exporta o schema criado acima
-module.exports = mongoose.model("database", AnnotationDataSchema);
+module.exports = mongoose.model("Annotation", AnnotationDataSchema);

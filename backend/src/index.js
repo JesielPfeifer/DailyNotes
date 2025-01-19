@@ -9,7 +9,6 @@ dotenv.config();
 const app = express(); // instancia o objeto da lib para a variavel app
 const port = 3333;
 connectToDatabase();
-//require("./config/dbConfig"); // importa o arquivo de config do banco de dados
 
 
 app.use(cors());

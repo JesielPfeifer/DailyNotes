@@ -34,6 +34,10 @@ function Register() {
         password,
         confirmPassword,
       });
+      if (response.status === 200) {
+        resetStates();
+        navigate('/login');
+      }
     } catch (erro) {
       setError(erro.response?.data?.msg || 'Erro ao cadastrar');
     } finally {

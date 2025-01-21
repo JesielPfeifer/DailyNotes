@@ -32,7 +32,9 @@ function Register() {
         const token = response.data.token;
         resetStates();
         localStorage.setItem('authToken', token);
-        navigate('/app');
+        if (token) {
+          navigate('/app');
+        }
       }
     } catch (error) {
       setError(error.response?.data?.msg || 'Erro ao fazer login');

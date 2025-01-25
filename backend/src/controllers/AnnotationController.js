@@ -2,8 +2,12 @@ const Annotations = require('../models/AnnotationData');
 
 module.exports = {
     async read(request, response) {
-        const annotationList = await Annotations.find();
-        return response.json(annotationList);
+        const created_by = request.id;
+        const annotationList = await Annotations.find({ created_by });
+        if (!annotationList || annotationList.length === 0) {
+        } else {
+            return response.json(annotationList);
+        }
     },
 
     async create(request, response) {
@@ -18,6 +22,7 @@ module.exports = {
             title,
             notes,
             priority,
+            created_by: request.id,
         });
         return response.json(annotationCreated);
     },

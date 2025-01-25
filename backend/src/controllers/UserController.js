@@ -57,6 +57,7 @@ module.exports = {
                     id: userExists._id,
                 },
                 secret,
+                { expiresIn: '1h' },
             );
             return response
                 .status(200)

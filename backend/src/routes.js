@@ -7,18 +7,19 @@ const AnnotationController = require('./controllers/AnnotationController');
 const PriorityController = require('./controllers/PriorityController');
 const ContentController = require('./controllers/ContentController');
 const UserController = require('./controllers/UserController');
+const CheckingAuth = require('./middleware/checkingAuth');
 
 // Rota Annotations
-routes.get('/annotations', AnnotationController.read);
-routes.post('/annotations', AnnotationController.create);
-routes.delete('/annotations/:id', AnnotationController.delete);
+routes.get('/annotations', CheckingAuth, AnnotationController.read);
+routes.post('/annotations', CheckingAuth, AnnotationController.create);
+routes.delete('/annotations/:id', CheckingAuth, AnnotationController.delete);
 
 // Rota Priority
-routes.get('/priorities', PriorityController.read);
-routes.post('/priorities/:id', PriorityController.update);
+routes.get('/priorities', CheckingAuth, PriorityController.read);
+routes.post('/priorities/:id', CheckingAuth, PriorityController.update);
 
 //Rota Content
-routes.post('/contents/:id', ContentController.update);
+routes.post('/contents/:id', CheckingAuth, ContentController.update);
 
 //Rota Users
 routes.get('/user/:id', UserController.findUser);

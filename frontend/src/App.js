@@ -46,7 +46,9 @@ function App() {
 
   async function getAllNotes() {
     const response = await api.get('/annotations');
-    setAllNotes(response.data);
+    if (response.data.length > 0) {
+      setAllNotes(response.data);
+    }
   }
 
   async function handleDelete(id) {

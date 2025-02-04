@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', true);
 
+//creating a connection to mongodb using private password and users
 const connectToDatabase = async () => {
     try {
         const connection = await mongoose.connect(

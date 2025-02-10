@@ -20,7 +20,7 @@ module.exports = {
 
         const user = await User.findById(id, '-password');
         if (!user) {
-            return response.status(404).json({ msg: 'User not found' });
+            return response.status(404).json({ msg: 'Usuário não encontrado' });
         }
         response.status(200).json({ user });
     },
@@ -32,13 +32,13 @@ module.exports = {
             return response.status(422).json({ msg: 'E-mail é obrigatorio' });
         }
         if (!password) {
-            return response.json({ msg: 'Senha é obrigatoria' });
+            return response.status(422).json({ msg: 'Senha é obrigatoria' });
         }
 
         //checking if user exists
         const userExists = await User.findOne({ email: email });
         if (!userExists) {
-            return response.json({ msg: 'User not found' });
+            return response.status(404).json({ msg: 'User not found' });
         }
 
         //Comparing if informed password its the same when user got registered
@@ -47,7 +47,7 @@ module.exports = {
             userExists.password,
         );
         if (!checkPassword) {
-            return response.json({ msg: 'Invalid password' });
+            return response.status(401).json({ msg: 'Invalid password' });
         }
 
         try {

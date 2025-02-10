@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Notes from './components/notes';
+import Notes from './components/Notes';
 import api from './services/api';
 import RadioButton from './components/RadioButton';
 

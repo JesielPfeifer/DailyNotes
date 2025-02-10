@@ -78,9 +78,14 @@ function Register() {
             required
           />
         </div>
-        <button id="btn_submit" type="submit">
-          {loading ? 'Carregando...' : 'Login'}
-        </button>
+        <div className="button-container">
+          <button id="btn_back" onClick={() => navigate('/')}>
+            Voltar
+          </button>
+          <button id="btn_submit" type="submit">
+            {loading ? 'Carregando...' : 'Login'}
+          </button>
+        </div>
       </form>
       {message && (
         <div

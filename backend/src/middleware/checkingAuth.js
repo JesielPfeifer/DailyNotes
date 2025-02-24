@@ -10,8 +10,14 @@ const verifyToken = (req, res, next) => {
         const secret = process.env.SECRET;
         const decoded = jwt.verify(token, secret);
         req.id = decoded.id;
+
         next();
     } catch (error) {
+        if (error.name === 'TokenExpiredError') {
+            return res
+                .status(401)
+                .json({ msg: 'Token expirado, faça login novamente' });
+        }
         console.log(error);
         return res.status(500).json({ msg: 'Internal Server Error' });
     }

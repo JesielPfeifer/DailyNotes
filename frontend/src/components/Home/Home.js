@@ -22,14 +22,14 @@ const LandingPage = () => {
             <Button
               color="inherit"
               sx={{ marginRight: 2, fontSize: '1rem' }}
-              onClick={() => navigate('/produtos')}
+              onClick={() => navigate('/products')}
             >
               Produtos
             </Button>
             <Button
               color="inherit"
               sx={{ marginRight: 2, fontSize: '1rem' }}
-              onClick={() => navigate('/contato')}
+              onClick={() => navigate('/contact')}
             >
               Contato
             </Button>

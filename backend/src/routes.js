@@ -21,7 +21,7 @@ routes.post('/priorities/:id', CheckingAuth, PriorityController.update);
 //Rota Content
 routes.post('/contents/:id', CheckingAuth, ContentController.update);
 
-//Rota Users
+//Rota auth
 routes.get('/user/:id', UserController.findUser);
 routes.post('/auth/register', UserController.register);
 routes.post('/auth/login', UserController.login);

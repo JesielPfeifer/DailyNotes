@@ -19,20 +19,6 @@ const LandingPage = () => {
             >
               Início
             </Button>
-            <Button
-              color="inherit"
-              sx={{ marginRight: 2, fontSize: '1rem' }}
-              onClick={() => navigate('/products')}
-            >
-              Produtos
-            </Button>
-            <Button
-              color="inherit"
-              sx={{ marginRight: 2, fontSize: '1rem' }}
-              onClick={() => navigate('/contact')}
-            >
-              Contato
-            </Button>
 
             {/* Botões de Login e Registrar (menores) */}
             <Button
